@@ -1,0 +1,33 @@
+{
+    "name": "team-nifty-gmbh/resellerinterface-sdk",
+    "description": "SDK for ResellerInterface API",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "TeamNiftyGmbH\\ResellerInterface\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "require": {
+        "php": "^8.3",
+        "saloonphp/saloon": "^3.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "illuminate/support": "^11.0|^12.0",
+        "illuminate/contracts": "^11.0|^12.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0"
+    },
+    "extra": {
+        "laravel": {
+              "providers": [
+                  "TeamNiftyGmbH\\ResellerInterface\\ResellerInterfaceServiceProvider"
+              ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

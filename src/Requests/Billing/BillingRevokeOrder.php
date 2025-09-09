@@ -1,0 +1,46 @@
+<?php
+
+namespace TeamNiftyGmbH\ResellerInterface\Requests\Billing;
+
+use Saloon\Contracts\Body\HasBody;
+use Saloon\Enums\Method;
+use Saloon\Http\Request;
+use Saloon\Http\Response;
+use Saloon\Traits\Body\HasFormBody;
+use TeamNiftyGmbH\ResellerInterface\Dto\Order;
+
+/**
+ * post_billing_revokeOrder
+ *
+ * Storniert eine Bestellung<br /><br />Benötigte Rechte:<br />**Finanzen verwalten**
+ * (api.finance.manage)<br /><br /><a target="_blank" href="/core/api#billing/revokeOrder">In
+ * Reseller-Interface öffnen</a>
+ */
+class BillingRevokeOrder extends Request implements HasBody
+{
+    use HasFormBody;
+
+    protected Method $method = Method::POST;
+
+    /**
+     * @param  int  $orderId  Bestell-ID
+     */
+    public function __construct(
+        protected int $orderId,
+    ) {}
+
+    public function createDtoFromResponse(Response $response): mixed
+    {
+        return Order::from($response->json() ?? []);
+    }
+
+    public function defaultBody(): array
+    {
+        return array_filter(['orderID' => $this->orderId]);
+    }
+
+    public function resolveEndpoint(): string
+    {
+        return '/billing/revokeOrder';
+    }
+}
