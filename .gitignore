@@ -1,0 +1,38 @@
+# Composer
+/vendor/
+composer.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.phpunit.result.cache
+.phpunit.cache/
+coverage/
+phpunit.xml
+.env.testing
+
+# Build
+build/
+dist/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+
+# Laravel specific (if used in Laravel project)
+/storage/
+/bootstrap/cache/
+
+# Node (if any frontend assets)
+/node_modules/
+npm-debug.log
+yarn-error.log
