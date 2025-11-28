@@ -5,6 +5,7 @@ namespace TeamNiftyGmbH\ResellerInterface\Auth;
 use RuntimeException;
 use Saloon\Contracts\Authenticator;
 use Saloon\Http\PendingRequest;
+use TeamNiftyGmbH\ResellerInterface\Contracts\SkipsResellerIdInjection;
 use TeamNiftyGmbH\ResellerInterface\Requests\Resellers\ResellerLogin;
 use TeamNiftyGmbH\ResellerInterface\ResellerInterface;
 
@@ -63,7 +64,7 @@ class ResellerInterfaceAuthenticator implements Authenticator
             $pendingRequest->headers()->add('Cookie', 'coreSID=' . $this->coreSID);
         }
 
-        if ($this->resellerId) {
+        if ($this->resellerId && ! $pendingRequest->getRequest() instanceof SkipsResellerIdInjection) {
             $pendingRequest->body()->add('resellerId', $this->resellerId);
         }
     }

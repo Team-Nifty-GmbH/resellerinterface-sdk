@@ -7,6 +7,7 @@ use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
 use Saloon\Traits\Body\HasFormBody;
+use TeamNiftyGmbH\ResellerInterface\Contracts\SkipsResellerIdInjection;
 
 /**
  * post_invoice_listItems
@@ -15,7 +16,7 @@ use Saloon\Traits\Body\HasFormBody;
  * (api.finance.view)<br /><br /><a target="_blank" href="/core/api#invoice/listItems">In
  * Reseller-Interface öffnen</a>
  */
-class InvoiceListItems extends Request implements HasBody
+class InvoiceListItems extends Request implements HasBody, SkipsResellerIdInjection
 {
     use HasFormBody;
 
