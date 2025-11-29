@@ -7,6 +7,7 @@ use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
 use Saloon\Traits\Body\HasFormBody;
+use TeamNiftyGmbH\ResellerInterface\Contracts\SkipsResellerIdInjection;
 use TeamNiftyGmbH\ResellerInterface\Dto\Domain;
 
 /**
@@ -16,19 +17,19 @@ use TeamNiftyGmbH\ResellerInterface\Dto\Domain;
  * (api.domain.order)<br />**Unterreseller verwalten** (api.reseller.manage)<br /><br /><a
  * target="_blank" href="/core/api#domain/move">In Reseller-Interface öffnen</a>
  */
-class DomainMove extends Request implements HasBody
+class DomainMove extends Request implements HasBody, SkipsResellerIdInjection
 {
     use HasFormBody;
 
     protected Method $method = Method::POST;
 
     /**
-     * @param  int  $domain  Domain-ID oder Domainname
+     * @param  int|string  $domain  Domain-ID oder Domainname
      * @param  int  $targetResellerId  Reseller-ID des Zielaccounts
      * @param  null|bool  $cloneHandles  Handles kopieren (optional)
      */
     public function __construct(
-        protected int $domain,
+        protected int|string $domain,
         protected int $targetResellerId,
         protected ?bool $cloneHandles = null,
     ) {}
