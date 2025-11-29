@@ -522,14 +522,14 @@ class Domains extends BaseResource
     }
 
     /**
-     * @param  int  $domain  Domain-ID oder Domainname
+     * @param  int|string  $domain  Domain-ID oder Domainname
      * @param  int  $targetResellerId  Reseller-ID des Zielaccounts
      * @param  null|bool  $cloneHandles  Handles kopieren (optional)
      *
      * @throws FatalRequestException
      * @throws RequestException
      */
-    public function domainMove(int $domain, int $targetResellerId, ?bool $cloneHandles = null): Response
+    public function domainMove(int|string $domain, int $targetResellerId, ?bool $cloneHandles = null): Response
     {
         return $this->connector->send(new DomainMove($domain, $targetResellerId, $cloneHandles));
     }
