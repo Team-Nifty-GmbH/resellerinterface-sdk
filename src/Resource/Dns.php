@@ -9,7 +9,7 @@ use Saloon\Http\Response;
 use TeamNiftyGmbH\ResellerInterface\Enums\IpVersion;
 use TeamNiftyGmbH\ResellerInterface\Enums\Mode;
 use TeamNiftyGmbH\ResellerInterface\Enums\RedirectCode;
-use TeamNiftyGmbH\ResellerInterface\Enums\Type;
+use TeamNiftyGmbH\ResellerInterface\Enums\DnsRecordType;
 use TeamNiftyGmbH\ResellerInterface\Requests\Dns\DnsCreateBackup;
 use TeamNiftyGmbH\ResellerInterface\Requests\Dns\DnsCreateRecord;
 use TeamNiftyGmbH\ResellerInterface\Requests\Dns\DnsCreateRrtemplate;
@@ -56,7 +56,7 @@ class Dns extends BaseResource
     /**
      * @param  string  $domain  Domainname (sld.tld)
      * @param  null|string  $name  Resource-Name (optional)
-     * @param  Type  $type  Resource-Typ
+     * @param  DnsRecordType  $type  Resource-Typ
      * @param  null|int  $ttl  Gültigkeit der Resource (optional)
      * @param  null|int  $priority  Resource-Priorität (optional)
      * @param  string  $content  Resource-Data
@@ -77,7 +77,7 @@ class Dns extends BaseResource
     public function dnsCreateRecord(
         string $domain,
         ?string $name,
-        Type $type,
+        DnsRecordType $type,
         ?int $ttl,
         ?int $priority,
         string $content,
@@ -110,7 +110,7 @@ class Dns extends BaseResource
      * @param  int  $rrtemplateId  Resource-Record-Template-ID
      * @param  null|string  $name  Resource-Name (optional)
      * @param  null|int  $ttl  Gültigkeit der Resource (optional)
-     * @param  Type  $type  Resource-Typ
+     * @param  DnsRecordType  $type  Resource-Typ
      * @param  null|int  $priority  Resource-Priorität (optional)
      * @param  string  $content  Resource-Data
      * @param  null|string  $uri  Ziel URL der Frame-/Header-Weiterleitung (optional)
@@ -127,7 +127,7 @@ class Dns extends BaseResource
         int $rrtemplateId,
         ?string $name,
         ?int $ttl,
-        Type $type,
+        DnsRecordType $type,
         ?int $priority,
         string $content,
         ?string $uri = null,
@@ -353,7 +353,7 @@ class Dns extends BaseResource
         Mode $mode,
         ?string $name = null,
         ?int $ttl = null,
-        ?Type $type = null,
+        ?DnsRecordType $type = null,
         ?int $priority = null,
         ?string $content = null,
         ?string $matchContent = null,
@@ -439,7 +439,7 @@ class Dns extends BaseResource
      * @param  int  $id  Record-ID
      * @param  null|string  $name  Resource-Name (optional)
      * @param  null|int  $ttl  Gültigkeit der Resource (optional)
-     * @param  Type  $type  Resource-Typ
+     * @param  DnsRecordType  $type  Resource-Typ
      * @param  null|int  $priority  Resource-Priorität (optional)
      * @param  string  $content  Resource-Data
      * @param  null|string  $uri  Ziel URL der Frame-/Header-Weiterleitung (optional)
@@ -457,7 +457,7 @@ class Dns extends BaseResource
         int $id,
         ?string $name,
         ?int $ttl,
-        Type $type,
+        DnsRecordType $type,
         ?int $priority,
         string $content,
         ?string $uri = null,
@@ -486,7 +486,7 @@ class Dns extends BaseResource
      * @param  int  $rrtemplateRecordId  Resource-Record-ID
      * @param  null|string  $name  Resource-Name (optional)
      * @param  null|int  $ttl  Gültigkeit der Resource (optional)
-     * @param  Type  $type  Resource-Typ
+     * @param  DnsRecordType  $type  Resource-Typ
      * @param  null|int  $priority  Resource-Priorität (optional)
      * @param  string  $content  Resource-Data
      * @param  null|string  $uri  Ziel URL der Frame-/Header-Weiterleitung (optional)
@@ -503,7 +503,7 @@ class Dns extends BaseResource
         int $rrtemplateRecordId,
         ?string $name,
         ?int $ttl,
-        Type $type,
+        DnsRecordType $type,
         ?int $priority,
         string $content,
         ?string $uri = null,
