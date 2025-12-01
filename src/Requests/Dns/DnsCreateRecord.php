@@ -9,7 +9,7 @@ use Saloon\Http\Response;
 use Saloon\Traits\Body\HasFormBody;
 use TeamNiftyGmbH\ResellerInterface\Enums\IpVersion;
 use TeamNiftyGmbH\ResellerInterface\Enums\RedirectCode;
-use TeamNiftyGmbH\ResellerInterface\Enums\Type;
+use TeamNiftyGmbH\ResellerInterface\Enums\DnsRecordType;
 
 /**
  * post_dns_createRecord
@@ -27,7 +27,7 @@ class DnsCreateRecord extends Request implements HasBody
     /**
      * @param  string  $domain  Domainname (sld.tld)
      * @param  null|string  $name  Resource-Name (optional)
-     * @param  Type  $type  Resource-Typ
+     * @param  DnsRecordType  $type  Resource-Typ
      * @param  null|int  $ttl  Gültigkeit der Resource (optional)
      * @param  null|int  $priority  Resource-Priorität (optional)
      * @param  string  $content  Resource-Data
@@ -45,7 +45,7 @@ class DnsCreateRecord extends Request implements HasBody
     public function __construct(
         protected string $domain,
         protected ?string $name,
-        protected Type $type,
+        protected DnsRecordType $type,
         protected ?int $ttl,
         protected ?int $priority,
         protected string $content,

@@ -8,7 +8,7 @@ use Saloon\Http\Request;
 use Saloon\Http\Response;
 use Saloon\Traits\Body\HasFormBody;
 use TeamNiftyGmbH\ResellerInterface\Enums\RedirectCode;
-use TeamNiftyGmbH\ResellerInterface\Enums\Type;
+use TeamNiftyGmbH\ResellerInterface\Enums\DnsRecordType;
 
 /**
  * post_dns_updateRecord
@@ -28,7 +28,7 @@ class DnsUpdateRecord extends Request implements HasBody
      * @param  int  $id  Record-ID
      * @param  null|string  $name  Resource-Name (optional)
      * @param  null|int  $ttl  Gültigkeit der Resource (optional)
-     * @param  Type  $type  Resource-Typ
+     * @param  DnsRecordType  $type  Resource-Typ
      * @param  null|int  $priority  Resource-Priorität (optional)
      * @param  string  $content  Resource-Data
      * @param  null|string  $uri  Ziel URL der Frame-/Header-Weiterleitung (optional)
@@ -43,7 +43,7 @@ class DnsUpdateRecord extends Request implements HasBody
         protected int $id,
         protected ?string $name,
         protected ?int $ttl,
-        protected Type $type,
+        protected DnsRecordType $type,
         protected ?int $priority,
         protected string $content,
         protected ?string $uri = null,
