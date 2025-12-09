@@ -2,6 +2,10 @@
 
 namespace TeamNiftyGmbH\ResellerInterface\Requests\Handles;
 
+use Saloon\CachePlugin\Contracts\Cacheable;
+use Saloon\CachePlugin\Contracts\Driver;
+use Saloon\CachePlugin\Drivers\LaravelCacheDriver;
+use Saloon\CachePlugin\Traits\HasCaching;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
@@ -17,8 +21,9 @@ use TeamNiftyGmbH\ResellerInterface\Enums\ResellerID;
  * />Benötigte Rechte:<br />**Handles einsehen** (api.handle.view)<br /><br /><a target="_blank"
  * href="/core/api#handle/list">In Reseller-Interface öffnen</a>
  */
-class HandleList extends Request implements HasBody
+class HandleList extends Request implements Cacheable, HasBody
 {
+    use HasCaching;
     use HasFormBody;
 
     protected Method $method = Method::POST;
@@ -42,6 +47,11 @@ class HandleList extends Request implements HasBody
         protected ?int $limit = null,
     ) {}
 
+    public function cacheExpiryInSeconds(): int
+    {
+        return 3600;
+    }
+
     public function createDtoFromResponse(Response $response): mixed
     {
         return $response->json();
@@ -60,8 +70,18 @@ class HandleList extends Request implements HasBody
         ]);
     }
 
+    public function resolveCacheDriver(): Driver
+    {
+        return new LaravelCacheDriver(cache()->store());
+    }
+
     public function resolveEndpoint(): string
     {
         return '/handle/list';
+    }
+
+    protected function cacheKey(mixed ...$arguments): ?string
+    {
+        return 'handle_list_' . md5(json_encode($this->defaultBody()));
     }
 }

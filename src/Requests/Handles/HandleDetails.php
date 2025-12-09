@@ -2,6 +2,10 @@
 
 namespace TeamNiftyGmbH\ResellerInterface\Requests\Handles;
 
+use Saloon\CachePlugin\Contracts\Cacheable;
+use Saloon\CachePlugin\Contracts\Driver;
+use Saloon\CachePlugin\Drivers\LaravelCacheDriver;
+use Saloon\CachePlugin\Traits\HasCaching;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
@@ -16,8 +20,9 @@ use TeamNiftyGmbH\ResellerInterface\Dto\Handle;
  * (api.handle.view)<br /><br /><a target="_blank" href="/core/api#handle/details">In
  * Reseller-Interface öffnen</a>
  */
-class HandleDetails extends Request implements HasBody
+class HandleDetails extends Request implements Cacheable, HasBody
 {
+    use HasCaching;
     use HasFormBody;
 
     protected Method $method = Method::POST;
@@ -29,6 +34,12 @@ class HandleDetails extends Request implements HasBody
         protected string $alias,
     ) {}
 
+    public function cacheExpiryInSeconds(): int
+    {
+        // Cache handle details for 1 hour
+        return 3600;
+    }
+
     public function createDtoFromResponse(Response $response): mixed
     {
         return Handle::from($response->json() ?? []);
@@ -39,8 +50,18 @@ class HandleDetails extends Request implements HasBody
         return array_filter(['alias' => $this->alias]);
     }
 
+    public function resolveCacheDriver(): Driver
+    {
+        return new LaravelCacheDriver(cache()->store());
+    }
+
     public function resolveEndpoint(): string
     {
         return '/handle/details';
+    }
+
+    protected function cacheKey(mixed ...$arguments): ?string
+    {
+        return 'handle_details_' . $this->alias;
     }
 }

@@ -7,8 +7,8 @@ use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
 use Saloon\Traits\Body\HasFormBody;
-use TeamNiftyGmbH\ResellerInterface\Enums\RedirectCode;
 use TeamNiftyGmbH\ResellerInterface\Enums\DnsRecordType;
+use TeamNiftyGmbH\ResellerInterface\Enums\RedirectCode;
 
 /**
  * post_dns_updateRecord
