@@ -8,7 +8,7 @@ A modern PHP SDK for the ResellerInterface API, built with [Saloon v3](https://d
 - 🚀 **Laravel Integration** - Service Provider, Config, and Helper functions included
 - 📦 **Standalone Usage** - Works without Laravel as a standalone PHP package
 - 🎯 **Type-Safe** - Full type hints and IDE autocompletion
-- ⚡ **Modern PHP** - Requires PHP 8.3+ with constructor property promotion
+- ⚡ **Modern PHP** - Requires PHP 8.4+ with constructor property promotion
 - 🔄 **Session Management** - Automatic session renewal and cookie handling
 
 ## Installation
@@ -336,7 +336,7 @@ $this->assertEquals(5, $response->json()['data']['totalCount']);
 
 ## Requirements
 
-- PHP 8.3 or higher
+- PHP 8.4 or higher
 - Laravel 11.0+ (optional, for Laravel integration)
 
 ## Contributing
